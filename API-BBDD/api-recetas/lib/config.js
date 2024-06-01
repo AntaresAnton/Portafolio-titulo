@@ -1,5 +1,6 @@
-require('dotenv').config();
+"use strict";
 
+require('dotenv').config();
 module.exports = {
   database: process.env.DB_NAME,
   user: process.env.DB_USER,
@@ -7,4 +8,3 @@ module.exports = {
   host: process.env.DB_HOST,
   dialect: process.env.DB_DIALECT
 };
-
