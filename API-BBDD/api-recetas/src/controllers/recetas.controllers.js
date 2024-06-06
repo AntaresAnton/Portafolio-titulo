@@ -11,6 +11,9 @@ const obtenerRecetas = async (req, res) => {
         const sql = `
         SELECT 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 43df15dbfd66a1f80fe3bc73d61cc6ccd430fe6b
                 r.id_receta,
                 r.nombre,
                 r.url_imagen,
@@ -31,6 +34,7 @@ const obtenerRecetas = async (req, res) => {
             INNER JOIN usuario u ON u.id_usr = r.id_usr
             INNER JOIN categoria c ON c.id_cat = r.id_cat
             INNER JOIN pais p ON p.id_pais = r.id_pais
+<<<<<<< HEAD
 =======
             r.id_receta,
             r.nombre,
@@ -53,11 +57,16 @@ const obtenerRecetas = async (req, res) => {
         INNER JOIN categoria c ON c.id_cat = r.id_cat
         INNER JOIN pais p ON p.id_pais = r.id_pais
 >>>>>>> upstream/main
+=======
+>>>>>>> 43df15dbfd66a1f80fe3bc73d61cc6ccd430fe6b
         `;
 
         const [rows] = await db.query(sql);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 43df15dbfd66a1f80fe3bc73d61cc6ccd430fe6b
         res.json(
             {
                 "ok": true,
@@ -65,6 +74,7 @@ const obtenerRecetas = async (req, res) => {
             }
         );
     } catch (error) {
+<<<<<<< HEAD
 =======
         res.json({
             ok: true,
@@ -73,6 +83,8 @@ const obtenerRecetas = async (req, res) => {
     } catch (error) {
         console.error('Error al obtener recetas:', error);
 >>>>>>> upstream/main
+=======
+>>>>>>> 43df15dbfd66a1f80fe3bc73d61cc6ccd430fe6b
         httpError(res, "ERROR_GET_RECETAS");
     }
 }

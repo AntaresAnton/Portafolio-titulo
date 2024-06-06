@@ -1,6 +1,7 @@
 "use strict";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // import mysql from "promise-mysql";
 
 // import { claves } from "./../config";
@@ -29,6 +30,8 @@
 
 // }
 
+=======
+>>>>>>> 43df15dbfd66a1f80fe3bc73d61cc6ccd430fe6b
 const {
   Sequelize
 } = require('sequelize');
@@ -70,6 +73,8 @@ const getConnection = async () => {
     throw error;
   }
 };
+
+//
 
 // Exportar la función de conexión
 

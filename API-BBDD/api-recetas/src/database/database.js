@@ -25,8 +25,12 @@ const getConnection = async () => {
 // Exportar la función de conexión
 module.exports = {
 <<<<<<< HEAD
+<<<<<<< HEAD
   getConnection
 =======
   getConnection,
 >>>>>>> upstream/main
+=======
+  getConnection
+>>>>>>> 43df15dbfd66a1f80fe3bc73d61cc6ccd430fe6b
 };

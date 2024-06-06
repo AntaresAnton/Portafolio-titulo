@@ -9,9 +9,15 @@ const options = {
     info: {
       title: 'api-recetas-del-mundo',
       version: '1.5.0',
+<<<<<<< HEAD
       description: 'Documentación de la API REST de Creada para Proyecto Portafolio de Titulo - Johanna Hernandez - Patricio Quintanilla - Claudio Sanchez - Italo Brignardello',
       contact: {
         name: 'Johanna Hernandez - Patricio Quintanilla - Claudio Sanchez - Italo Brignardello',
+=======
+      description: 'Documentación de la API REST de Creada para Proyecto Portafolio de Titulo - Johanna Hernandez - Patricio Quintanilla - Claudio Sanchez -  Italo B******** ',
+      contact: {
+        name: 'Johanna Hernandez - Patricio Quintanilla - Claudio Sanchez -  Italo B********',
+>>>>>>> 43df15dbfd66a1f80fe3bc73d61cc6ccd430fe6b
         url: 'https://github.com/AntaresAnton/Portafolio-titulo'
       },
       license: {

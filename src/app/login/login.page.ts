@@ -34,5 +34,4 @@ export class LoginPage implements OnInit {
       this.usuario = data;
     });
   }
-
 }
