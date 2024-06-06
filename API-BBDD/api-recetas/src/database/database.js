@@ -4,6 +4,7 @@ const { claves } = require('./../config');
 const sequelize = new Sequelize(claves.database, claves.user, claves.password, {
   host: claves.host,
   dialect: 'mysql',
+  logging: false
 });
 
 // Definición del modelo de conexión
@@ -21,7 +22,6 @@ const getConnection = async () => {
     throw error;
   }
 };
-
 //
 
 // Exportar la función de conexión

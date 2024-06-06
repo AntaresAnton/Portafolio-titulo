@@ -31,9 +31,7 @@ const obtenerRecetas = async (req, res) => {
             INNER JOIN categoria c ON c.id_cat = r.id_cat
             INNER JOIN pais p ON p.id_pais = r.id_pais
         `;
-
         const [rows] = await db.query(sql);
-
         res.json(
             {
                 "ok": true,
