@@ -3,7 +3,7 @@ import { MealService,CategoriaService } from '../services/api.service';
 
 interface Categoria {
   id_cat: number;
-  imagen: string;
+  url_imagen: string;
   nombre: string;
   activo: number;
   fecha_creacion: string;
@@ -27,7 +27,6 @@ export class ComidasPorTipoPage implements OnInit {
       next: (response: any) => {
         if (response.ok && response.data) {
           this.data = response.data;
-          console
         } else {
           console.error('Error en la respuesta del servicio:', response);
         }

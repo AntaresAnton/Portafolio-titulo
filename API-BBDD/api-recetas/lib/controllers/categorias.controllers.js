@@ -17,6 +17,7 @@ const obtenerCategorias = async (req, res) => {
             SELECT 
                 c.id_cat,
                 c.nombre,
+                c.url_imagen,
                 c.fecha_creacion,
                 CASE c.estado
                     WHEN 1 THEN 'Activo'
@@ -40,7 +41,8 @@ const agregarCategoria = async (req, res) => {
   try {
     const {
       nombre,
-      estado
+      estado,
+      url_imagen
     } = req.body;
     const token = req.headers.authorization;
     const {
@@ -49,8 +51,8 @@ const agregarCategoria = async (req, res) => {
     const id_usuario = usuario.id;
     const db = await database.getConnection();
     const sql = `
-            INSERT INTO categoria(nombre, estado, fecha_creacion, id_usr)
-            VALUES('${nombre}', '${estado}', NOW(), ${id_usuario})
+            INSERT INTO categoria(nombre, url_imagen, estado, fecha_creacion, id_usr)
+            VALUES('${nombre}', '${url_imagen}', '${estado}', NOW(), ${id_usuario})
         `;
     // EJECUTAMOS LA CONSULTA 
     const [result] = await db.query(sql);
@@ -79,6 +81,7 @@ const obtenerCategoria = async (req, res) => {
         SELECT 
                 c.id_cat,
                 c.nombre,
+                c.url_imagen,
                 c.fecha_creacion,
                 CASE c.estado
                     WHEN 1 THEN 'Activo'
@@ -107,6 +110,7 @@ const obtenerCategoriaNombre = async (req, res) => {
         SELECT 
                 c.id_cat,
                 c.nombre,
+                c.url_imagen,
                 c.fecha_creacion,
                 CASE c.estado
                     WHEN 1 THEN 'Activo'
@@ -133,12 +137,14 @@ const editarCategoria = async (req, res) => {
     } = req.params;
     const {
       nombre,
-      estado
+      estado,
+      url_imagen
     } = req.body;
     const db = await database.getConnection();
     const sql = `
             UPDATE categoria SET
                 nombre = '${nombre}',
+                url_imagen = '${url_imagen}',
                 estado = ${estado}
             WHERE id_cat = ${id}
         `;

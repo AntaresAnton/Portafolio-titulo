@@ -27,7 +27,7 @@
   <ion-list *ngIf="data && data.length > 0">
     <ion-item *ngFor="let categoria of data">
       <ion-thumbnail slot="start">
-        <img *ngIf="categoria.imagen; else defaultImage" alt="{{ categoria.imagen }}" src="{{ categoria.imagen }}" />
+        <img *ngIf="categoria.url_imagen; else defaultImage" alt="{{ categoria.nombre }}" src="{{ categoria.url_imagen }}" />
         <ng-template #defaultImage>
           <img class="cheems-huaso" src="../../assets/img/cheems-waso.png" alt="Imagen por defecto">
         </ng-template>
