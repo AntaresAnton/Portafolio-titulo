@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 05-06-2024 a las 20:02:49
+-- Tiempo de generación: 06-06-2024 a las 12:06:52
 -- Versión del servidor: 10.6.17-MariaDB-cll-lve
 -- Versión de PHP: 8.1.27
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `concfcqa_apirecetas`
+-- Base de datos: `concfcqa_recetasdb`
 --
 
 -- --------------------------------------------------------
@@ -55,6 +55,7 @@ INSERT INTO `carrusel` (`id_caru`, `nombre`, `url_imagen`, `fecha_creacion`, `es
 CREATE TABLE `categoria` (
   `id_cat` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
+  `url_imagen` varchar(300) NOT NULL,
   `estado` tinyint(4) NOT NULL DEFAULT 0,
   `fecha_creacion` datetime NOT NULL,
   `Comentario` text DEFAULT NULL,
@@ -65,22 +66,22 @@ CREATE TABLE `categoria` (
 -- Volcado de datos para la tabla `categoria`
 --
 
-INSERT INTO `categoria` (`id_cat`, `nombre`, `estado`, `fecha_creacion`, `Comentario`, `id_usr`) VALUES
-(1, 'Breakfast', 1, '2023-06-27 11:19:33', NULL, 2),
-(2, 'Beef', 1, '2023-06-27 11:20:20', NULL, 2),
-(3, 'Chicken', 1, '2023-06-27 11:20:29', NULL, 2),
-(4, 'Dessert', 1, '2023-06-27 11:20:44', NULL, 2),
-(6, 'Goat', 1, '2023-06-27 11:21:03', NULL, 2),
-(7, 'Lamb', 1, '2023-06-27 11:21:15', NULL, 2),
-(8, 'Miscellaneous', 1, '2023-06-27 11:21:24', NULL, 2),
-(9, 'Pasta', 1, '2023-06-27 11:21:37', NULL, 2),
-(10, 'Pork', 1, '2023-06-27 11:21:52', NULL, 2),
-(11, 'Seafood', 1, '2023-06-27 11:22:05', NULL, 2),
-(12, 'Side', 1, '2023-06-27 11:22:15', NULL, 2),
-(13, 'Starter', 1, '2023-06-27 11:40:32', NULL, 2),
-(14, 'Vegan', 1, '2023-06-27 11:40:43', NULL, 2),
-(15, 'Vegetarian', 1, '2023-06-27 11:40:50', NULL, 2),
-(27, 'Chicken-cat', 1, '2024-05-26 20:36:30', NULL, 22);
+INSERT INTO `categoria` (`id_cat`, `nombre`, `url_imagen`, `estado`, `fecha_creacion`, `Comentario`, `id_usr`) VALUES
+(1, 'Breakfast', '', 1, '2023-06-27 11:19:33', NULL, 2),
+(2, 'Beef', '', 1, '2023-06-27 11:20:20', NULL, 2),
+(3, 'Chicken', '', 1, '2023-06-27 11:20:29', NULL, 2),
+(4, 'Dessert', '', 1, '2023-06-27 11:20:44', NULL, 2),
+(6, 'Goat', '', 1, '2023-06-27 11:21:03', NULL, 2),
+(7, 'Lamb', '', 1, '2023-06-27 11:21:15', NULL, 2),
+(8, 'Miscellaneous', '', 1, '2023-06-27 11:21:24', NULL, 2),
+(9, 'Pasta', '', 1, '2023-06-27 11:21:37', NULL, 2),
+(10, 'Pork', '', 1, '2023-06-27 11:21:52', NULL, 2),
+(11, 'Seafood', '', 1, '2023-06-27 11:22:05', NULL, 2),
+(12, 'Side', '', 1, '2023-06-27 11:22:15', NULL, 2),
+(13, 'Starter', '', 1, '2023-06-27 11:40:32', NULL, 2),
+(14, 'Vegan', '', 1, '2023-06-27 11:40:43', NULL, 2),
+(15, 'Vegetarian', '', 1, '2023-06-27 11:40:50', NULL, 2),
+(27, 'Chicken-cat', '', 1, '2024-05-26 20:36:30', NULL, 22);
 
 -- --------------------------------------------------------
 
