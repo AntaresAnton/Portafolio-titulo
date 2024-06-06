@@ -1,9 +1,15 @@
-const { Sequelize } = require('sequelize');
-const { claves } = require('./../config');
+"use strict";
+
+const {
+  Sequelize
+} = require('sequelize');
+const {
+  claves
+} = require('./../config');
 // Configuración de Sequelize
 const sequelize = new Sequelize(claves.database, claves.user, claves.password, {
   host: claves.host,
-  dialect: 'mysql',
+  dialect: 'mysql'
 });
 
 // Definición del modelo de conexión
