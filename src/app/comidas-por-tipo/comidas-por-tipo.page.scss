@@ -91,4 +91,22 @@
       transform: rotate(90deg) translate(-.25rem);
     }
   }
+  .boton-centrado{
+    text-align: center;
+    margin: 2rem 0px;
+  }
+
+  .naranjo{
+    color: orangered;
+  }
+
+  .background-image{
+    --background: url(../../assets/img/fondo_inicio.jpg) 0 0/100% 100% no-repeat;
+  }
   
+  img.cheems-huaso{
+    width: 60% !important;
+    width: auto;
+    margin: auto;
+    display: block;
+  }

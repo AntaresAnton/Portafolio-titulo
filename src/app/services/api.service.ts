@@ -42,22 +42,7 @@ export class AleatoriaMeal {
   }
 }
 
-// Módulo para los paises
-
-@Injectable({
-  providedIn: 'root'
-})
-export class MealService3 {
-  private apiUrl = 'https://apirecetas.iacst.space/pais/nombre/Canadian';
-
-  constructor(private http: HttpClient) { }
-
-  getPaises(): Observable<any> {
-    return this.http.get(this.apiUrl);
-  }
-}
 /////// SERVICIOS PARA OBTENER DATOS DE UNA BBDD MYSQL MEDIANTE NODE ///////
-// módulo para obtener datos de productos 
 @Injectable({
   providedIn: 'root'
 })
@@ -72,6 +57,10 @@ export class RecetasService {
   }
 }
 
+/////////////////////////////////////
+@Injectable({
+  providedIn: 'root'
+})
 export class RecetasNombreService {
   private apiUrl = 'https://apirecetas.iacst.space/recetas/nombre';
 
@@ -82,14 +71,48 @@ export class RecetasNombreService {
     return this.http.get<any[]>(url);
   }
 }
-
+//////////////////////////
+@Injectable({
+  providedIn: 'root'
+})
 export class RecetasIdService {
   private apiUrl = 'https://apirecetas.iacst.space/recetas';
 
   constructor(private http: HttpClient) { }
 
-  getRecetasId(id: string): Observable<any> {
+  getRecetasId(id: number): Observable<any> {
     const url = `${this.apiUrl}/${encodeURIComponent(id)}`;
+    return this.http.get<any[]>(url);
+  }
+}
+
+/////// SERVICIOS PARA OBTENER DATOS DE UNA BBDD MYSQL MEDIANTE NODE ///////
+@Injectable({
+  providedIn: 'root'
+})
+export class PaisService {
+
+  private apiUrl = 'https://apirecetas.iacst.space/pais/';
+
+  constructor(private http: HttpClient) { }
+
+  getCategorias() {
+    return this.http.get<any[]>(this.apiUrl);
+  }
+}
+
+/////////////////////
+@Injectable({
+  providedIn: 'root'
+})
+export class PaisNombreService {
+
+  private apiUrl = 'https://apirecetas.iacst.space/recetas/pais';
+
+  constructor(private http: HttpClient) { }
+
+  getRecetasNombre(nombrecategoria: string): Observable<any> {
+    const url = `${this.apiUrl}/${encodeURIComponent(nombrecategoria)}`;
     return this.http.get<any[]>(url);
   }
 }
@@ -109,37 +132,23 @@ export class CategoriaService {
   }
 }
 
+/////////////////////
 @Injectable({
   providedIn: 'root'
 })
-export class CategoriaChile {
+export class CategoriaNombreService {
 
-  private apiUrl = 'https://apirecetas.iacst.space/pais/nombre/chile';
-
-  constructor(private http: HttpClient) { }
-
-  getCategorias() {
-    return this.http.get<any[]>(this.apiUrl);
-  }
-}
-
-
-// desde el localhost para obtener los datos de cada país
-@Injectable({
-  providedIn: 'root'
-})
-export class FlagService {
-
-  private apiUrl = 'https://apirecetas.iacst.space/pais/';
+  private apiUrl = 'https://apirecetas.iacst.space/recetas/categoria';
 
   constructor(private http: HttpClient) { }
 
-  getCategorias() {
-    return this.http.get<any[]>(this.apiUrl);
+  getRecetasNombre(nombrecategoria: string): Observable<any> {
+    const url = `${this.apiUrl}/${encodeURIComponent(nombrecategoria)}`;
+    return this.http.get<any[]>(url);
   }
 }
 
-// desde el localhost para obtener los datos de los postres
+/////////////////////////////////////
 @Injectable({
   providedIn: 'root'
 })
@@ -156,123 +165,7 @@ export class PostreService {
   
 }
 
-// desde el localhost para obtener los datos de las recetas de chile
-@Injectable({
-  providedIn: 'root'
-})
-export class recetasChile {
-
-  private apiUrl = 'https://apirecetas.iacst.space/pais/nombre/chile';
-
-  constructor(private http: HttpClient) { }
-
-  getCategorias() {
-    return this.http.get<any[]>(this.apiUrl);
-  }
-
-  
-}
-
-// desde el localhost para obtener los datos de las recetas de Gran bretaña
-@Injectable({
-  providedIn: 'root'
-})
-export class recetasGB {
-
-  private apiUrl = 'https://apirecetas.iacst.space/pais/nombre/British';
-
-  constructor(private http: HttpClient) { }
-
-  getCategorias() {
-    return this.http.get<any[]>(this.apiUrl);
-  }
-
-  
-}
-
-// desde el localhost para obtener los datos de las recetas de USA
-@Injectable({
-  providedIn: 'root'
-})
-export class recetasUsa {
-
-  private apiUrl = 'https://apirecetas.iacst.space/pais/nombre/American';
-
-  constructor(private http: HttpClient) { }
-
-  getCategorias() {
-    return this.http.get<any[]>(this.apiUrl);
-  }
-
-  
-}
-
-// desde el localhost para obtener los datos de las recetas de Canada
-@Injectable({
-  providedIn: 'root'
-})
-export class recetasCanada {
-
-  private apiUrl = 'https://apirecetas.iacst.space/pais/nombre/Canadian';
-
-  constructor(private http: HttpClient) { }
-
-  getCategorias() {
-    return this.http.get<any[]>(this.apiUrl);
-  }
-
-  
-}
-
-// desde el localhost para obtener los datos de las recetas de Mexico
-@Injectable({
-  providedIn: 'root'
-})
-export class recetasMexico {
-
-  private apiUrl = 'https://apirecetas.iacst.space/pais/nombre/Mexican';
-
-  constructor(private http: HttpClient) { }
-
-  getCategorias() {
-    return this.http.get<any[]>(this.apiUrl);
-  }
-
-  
-}
-
-// desde el localhost para obtener los datos de las recetas de Argentina
-@Injectable({
-  providedIn: 'root'
-})
-export class recetasArgentina {
-
-  private apiUrl = 'https://apirecetas.iacst.space/pais/nombre/Argentinian';
-
-  constructor(private http: HttpClient) { }
-
-  getCategorias() {
-    return this.http.get<any[]>(this.apiUrl);
-  }
-}
-
-// para obtener las recetas españolas
-@Injectable({
-  providedIn: 'root'
-})
-export class recetasEspanolas {
-
-  private apiUrl = 'https://apirecetas.iacst.space/pais/nombre/Argentinian';
-
-  constructor(private http: HttpClient) { }
-
-  getCategorias() {
-    return this.http.get<any[]>(this.apiUrl);
-  }
-}
-
-
-// para desplegar usuarios destacados jaja
+////////////////// para desplegar usuarios destacados jaja
 @Injectable({
   providedIn: 'root'
 })

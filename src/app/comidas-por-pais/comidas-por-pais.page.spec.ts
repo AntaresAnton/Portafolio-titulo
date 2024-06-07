@@ -5,11 +5,14 @@ describe('ComidasPorPaisPage', () => {
   let component: ComidasPorPaisPage;
   let fixture: ComponentFixture<ComidasPorPaisPage>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [ComidasPorPaisPage]
+    });
     fixture = TestBed.createComponent(ComidasPorPaisPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
