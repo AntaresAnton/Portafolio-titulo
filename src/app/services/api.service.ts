@@ -1,9 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+// Obtener el token del almacenamiento de sesión
+const token = sessionStorage.getItem('token');
 
+// Crear los encabezados HTTP con el token
+const headers = new HttpHeaders({
+  'Content-Type': 'application/json',
+  'Authorization': `Bearer ${token}`
+});
 // APIS LOCALES FUNCIONALES
 
 // módulo para obtener datos de categorías
@@ -11,7 +18,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class MealService {
-  private apiUrl = 'https://www.themealdb.com/api/json/v1/1/categories.php';
+  private apiUrl = 'https://apirecetas.iacst.space/categoria/';
 
   constructor(private http: HttpClient) { }
 
@@ -25,28 +32,85 @@ export class MealService {
   providedIn: 'root'
 })
 export class AleatoriaMeal {
-
-  private apiUrl = 'https://api.recetasdelmundo.uno/receta-aleatoria';
+  private apiUrl = 'https://apirecetas.iacst.space/recetas/receta-aleatoria';
 
   constructor(private http: HttpClient) { }
 
-  getrandomMeal() {
+  getrandomMeal(): Observable<{ ok: boolean; data: { id_receta: number; url_imagen: string; nombre: string }[] }> {
+    return this.http.get<{ ok: boolean; data: { id_receta: number; url_imagen: string; nombre: string }[] }>(this.apiUrl);
+  }
+}
+/////// SERVICIOS PARA OBTENER DATOS DE UNA BBDD MYSQL MEDIANTE NODE ///////
+@Injectable({
+  providedIn: 'root'
+})
+export class RecetasService {
+
+  private apiUrl = 'https://apirecetas.iacst.space/recetas/';
+
+  constructor(private http: HttpClient) { }
+
+  getRecetas(): Observable<any> {
     return this.http.get<any[]>(this.apiUrl);
   }
 }
 
-// Módulo para los paises
-
+/////////////////////////////////////
 @Injectable({
   providedIn: 'root'
 })
-export class MealService3 {
-  private apiUrl = 'https://www.themealdb.com/api/json/v1/1/filter.php?a=Canadian';
+export class RecetasNombreService {
+  private apiUrl = 'https://apirecetas.iacst.space/recetas/nombre';
 
   constructor(private http: HttpClient) { }
 
-  getPaises(): Observable<any> {
-    return this.http.get(this.apiUrl);
+  getRecetasNombre(nombrereceta: string): Observable<any> {
+    const url = `${this.apiUrl}/${encodeURIComponent(nombrereceta)}`;
+    return this.http.get<any[]>(url);
+  }
+}
+//////////////////////////
+@Injectable({
+  providedIn: 'root'
+})
+export class RecetasIdService {
+  private apiUrl = 'https://apirecetas.iacst.space/recetas';
+
+  constructor(private http: HttpClient) { }
+
+  getRecetasId(id: number): Observable<any> {
+    const url = `${this.apiUrl}/${encodeURIComponent(id)}`;
+    return this.http.get<any[]>(url);
+  }
+}
+
+/////// SERVICIOS PARA OBTENER DATOS DE UNA BBDD MYSQL MEDIANTE NODE ///////
+@Injectable({
+  providedIn: 'root'
+})
+export class PaisService {
+
+  private apiUrl = 'https://apirecetas.iacst.space/pais/';
+
+  constructor(private http: HttpClient) { }
+
+  getCategorias() {
+    return this.http.get<any[]>(this.apiUrl);
+  }
+}
+
+/////////////////////
+@Injectable({
+  providedIn: 'root'
+})
+export class PaisNombreService {
+  private apiUrl = 'https://apirecetas.iacst.space/recetas/pais';
+
+  constructor(private http: HttpClient) { }
+
+  getRecetasNombre(nombrePais: string): Observable<any> {
+    const url = `${this.apiUrl}/${encodeURIComponent(nombrePais)}`;
+    return this.http.get<any>(url);
   }
 }
 
@@ -56,7 +120,7 @@ export class MealService3 {
 })
 export class CategoriaService {
 
-  private apiUrl = 'https://api.recetasdelmundo.uno/categorias';
+  private apiUrl = 'https://apirecetas.iacst.space/categoria/';
 
   constructor(private http: HttpClient) { }
 
@@ -65,180 +129,49 @@ export class CategoriaService {
   }
 }
 
+/////////////////////
 @Injectable({
   providedIn: 'root'
 })
-export class CategoriaChile {
+export class CategoriaNombreService {
 
-  private apiUrl = 'https://api.recetasdelmundo.uno/recetas-chile';
-
-  constructor(private http: HttpClient) { }
-
-  getCategorias() {
-    return this.http.get<any[]>(this.apiUrl);
-  }
-}
-
-
-// desde el localhost para obtener los datos de cada país
-@Injectable({
-  providedIn: 'root'
-})
-export class FlagService {
-
-  private apiUrl = 'https://api.recetasdelmundo.uno/paises';
+  private apiUrl = 'https://apirecetas.iacst.space/recetas/categoria';
 
   constructor(private http: HttpClient) { }
 
-  getCategorias() {
-    return this.http.get<any[]>(this.apiUrl);
+  getRecetasNombre(nombrecategoria: string): Observable<any> {
+    const url = `${this.apiUrl}/${encodeURIComponent(nombrecategoria)}`;
+    return this.http.get<any[]>(url);
   }
 }
 
-// desde el localhost para obtener los datos de los postres
+/////////////////////////////////////
 @Injectable({
   providedIn: 'root'
 })
 export class PostreService {
 
-  private apiUrl = 'https://api.recetasdelmundo.uno/categorias-postres';
+  private apiUrl = 'https://apirecetas.iacst.space/recetas/categoria/Postre';
 
   constructor(private http: HttpClient) { }
 
-  getCategorias() {
-    return this.http.get<any[]>(this.apiUrl);
-  }
-
-  
-}
-
-// desde el localhost para obtener los datos de las recetas de chile
-@Injectable({
-  providedIn: 'root'
-})
-export class recetasChile {
-
-  private apiUrl = 'https://api.recetasdelmundo.uno/recetas-chile';
-
-  constructor(private http: HttpClient) { }
-
-  getCategorias() {
-    return this.http.get<any[]>(this.apiUrl);
-  }
-
-  
-}
-
-// desde el localhost para obtener los datos de las recetas de Gran bretaña
-@Injectable({
-  providedIn: 'root'
-})
-export class recetasGB {
-
-  private apiUrl = 'https://api.recetasdelmundo.uno/recetas-gb';
-
-  constructor(private http: HttpClient) { }
-
-  getCategorias() {
-    return this.http.get<any[]>(this.apiUrl);
-  }
-
-  
-}
-
-// desde el localhost para obtener los datos de las recetas de USA
-@Injectable({
-  providedIn: 'root'
-})
-export class recetasUsa {
-
-  private apiUrl = 'https://api.recetasdelmundo.uno/recetas-usa';
-
-  constructor(private http: HttpClient) { }
-
-  getCategorias() {
-    return this.http.get<any[]>(this.apiUrl);
-  }
-
-  
-}
-
-// desde el localhost para obtener los datos de las recetas de Canada
-@Injectable({
-  providedIn: 'root'
-})
-export class recetasCanada {
-
-  private apiUrl = 'https://api.recetasdelmundo.uno/recetas-canada';
-
-  constructor(private http: HttpClient) { }
-
-  getCategorias() {
-    return this.http.get<any[]>(this.apiUrl);
-  }
-
-  
-}
-
-// desde el localhost para obtener los datos de las recetas de Mexico
-@Injectable({
-  providedIn: 'root'
-})
-export class recetasMexico {
-
-  private apiUrl = 'https://api.recetasdelmundo.uno/recetas-mexico';
-
-  constructor(private http: HttpClient) { }
-
-  getCategorias() {
-    return this.http.get<any[]>(this.apiUrl);
-  }
-
-  
-}
-
-// desde el localhost para obtener los datos de las recetas de Argentina
-@Injectable({
-  providedIn: 'root'
-})
-export class recetasArgentina {
-
-  private apiUrl = 'https://api.recetasdelmundo.uno/recetas-argentina';
-
-  constructor(private http: HttpClient) { }
-
-  getCategorias() {
-    return this.http.get<any[]>(this.apiUrl);
+  getPostres(): Observable<{ ok: boolean; data: { id_receta: number; url_imagen: string; nombre: string }[] }> {
+    return this.http.get<{ ok: boolean; data: { id_receta: number; url_imagen: string; nombre: string }[] }>(this.apiUrl);
   }
 }
-
-// para obtener las recetas españolas
-@Injectable({
-  providedIn: 'root'
-})
-export class recetasEspanolas {
-
-  private apiUrl = 'https://api.recetasdelmundo.uno/recetas-es';
-
-  constructor(private http: HttpClient) { }
-
-  getCategorias() {
-    return this.http.get<any[]>(this.apiUrl);
-  }
-}
-
-
-// para desplegar usuarios destacados jaja
+////////////////// para desplegar usuarios destacados jaja
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-
-  private apiUrl = 'https://api.recetasdelmundo.uno/usuarioejemplo?page=1';
+  private apiUrl = 'https://apirecetas.iacst.space/usuario/';
 
   constructor(private http: HttpClient) { }
 
-  getCategorias() {
-    return this.http.get<any[]>(this.apiUrl);
+  getUsuarios() {
+    const options = {
+      headers: headers
+    };
+    return this.http.get<any[]>(this.apiUrl, options);
   }
 }

@@ -18,35 +18,72 @@ const obtenerRecetas = async (req, res) => {
     const db = await database.getConnection();
     const sql = `
         SELECT 
-            r.id_receta,
-            r.nombre,
-            r.url_imagen,
-            r.ingrediente,
-            r.preparacion,
-            r.id_cat,
-            c.nombre as nombre_cat,
-            r.id_pais,
-            p.nombre as nombre_pais,    
-            r.fecha_creacion,
-            CASE r.estado
-                WHEN 1 THEN 'Activo'
-                ELSE 'Inactivo'
-            END AS estado,
-            u.id_usr,
-            CONCAT(u.nombre, ' ', u.apellido) as nombre_y_apellido
-        FROM receta r
-        INNER JOIN usuario u ON u.id_usr = r.id_usr
-        INNER JOIN categoria c ON c.id_cat = r.id_cat
-        INNER JOIN pais p ON p.id_pais = r.id_pais
+                r.id_receta,
+                r.nombre,
+                r.url_imagen,
+                r.ingrediente,
+                r.preparacion,
+                r.id_cat,
+                c.nombre as nombre_cat,
+                r.id_pais,
+                p.nombre as nombre_pais,    
+                r.fecha_creacion,
+                CASE r.estado
+                    WHEN 1 THEN 'Activo'
+                    ELSE 'Inactivo'
+                END AS estado,
+                u.id_usr,
+                CONCAT(u.nombre, ' ', u.apellido) as nombre_y_apellido
+            FROM receta r
+            INNER JOIN usuario u ON u.id_usr = r.id_usr
+            INNER JOIN categoria c ON c.id_cat = r.id_cat
+            INNER JOIN pais p ON p.id_pais = r.id_pais
         `;
     const [rows] = await db.query(sql);
     res.json({
-      ok: true,
+      "ok": true,
       data: rows
     });
   } catch (error) {
-    console.error('Error al obtener recetas:', error);
     httpError(res, "ERROR_GET_RECETAS");
+  }
+};
+// METODO PARAR OBTENER 8 RECETAS RANDOM
+const obtenerRecetasRandom = async (req, res) => {
+  try {
+    const db = await database.getConnection();
+    const sql = `
+        SELECT 
+                r.id_receta,
+                r.nombre,
+                r.url_imagen,
+                r.ingrediente,
+                r.preparacion,
+                r.id_cat,
+                c.nombre as nombre_cat,
+                r.id_pais,
+                p.nombre as nombre_pais,    
+                r.fecha_creacion,
+                CASE r.estado
+                    WHEN 1 THEN 'Activo'
+                    ELSE 'Inactivo'
+                END AS estado,
+                u.id_usr,
+                CONCAT(u.nombre, ' ', u.apellido) as nombre_y_apellido
+            FROM receta r
+            INNER JOIN usuario u ON u.id_usr = r.id_usr
+            INNER JOIN categoria c ON c.id_cat = r.id_cat
+            INNER JOIN pais p ON p.id_pais = r.id_pais
+            ORDER BY RAND()
+            LIMIT 8;
+        `;
+    const [rows] = await db.query(sql);
+    res.json({
+      "ok": true,
+      data: rows
+    });
+  } catch (error) {
+    httpError(res, "ERROR_GET_RECETAS_RANDOM");
   }
 };
 //  METODO PARA AGREGAR UNA RECETA
@@ -308,6 +345,7 @@ const eliminarReceta = async (req, res) => {
 //EXPORTA NUESTRA RUTA PARA NUESTRO INDEX.JS
 module.exports = {
   obtenerRecetas,
+  obtenerRecetasRandom,
   agregarReceta,
   obtenerReceta,
   obtenerRecetaNombre,

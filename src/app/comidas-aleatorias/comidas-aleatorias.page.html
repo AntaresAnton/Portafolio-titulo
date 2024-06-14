@@ -1,46 +1,45 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title class="txt-naranjo">Receta Aleatoria</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/seleccionar"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Recetas Aleatorias</ion-title>
   </ion-toolbar>
 </ion-header>
 
+<ion-content padding class="background-image">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Recetas Aleatorias</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="seccion-user text-center">
+          <img class="user-cheems" src="../../assets/img/user-cheems.png" alt="">
+          <h2 class="tx-azul">Recetas <br> <span class="tx700">Aleatorias</span></h2>
+          <p class="tx-cafe tx500">Descubre recetas aleatorias y disfruta de nuevos sabores.</p>
+          <ion-button [routerLink]="['/seleccionar']">Volver</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-
-<ion-content class="row mt-4">
-  <hr>
-  <div class=" text-center" *ngFor="let comida of postre">
-    <img class="user-cheems" src="../../assets/img/user-cheems.png" alt="">
-    <h2 class="tx-azul tx700">{{comida.nombre_receta}}</h2>
-    <p class="tx-cafe tx500">¿Te apetece probar algo delicioso? Descubre nuestros platos en la aplicación y elige tu
-      favorito para disfrutar en casa. ¡Buen provecho!</p>
-    <ion-button class="redondeado" [routerLink]="['/seleccionar']">Volver</ion-button>
-  </div>
-
-
-  <ion-card *ngFor="let comida of postre">
-    <ion-card-header>
-      <ion-card-title>{{comida.nombre_receta}}</ion-card-title>
-    </ion-card-header>
-
-    <ion-card-content>
-      <img class="w-100 mt-3" src="{{comida.url_imagen_receta}}" alt="{{comida.nombre_receta}}">
-
-      <h2>Descripción:</h2>
-      <ul>
-        <li>{{comida.preparacion_receta}}</li>
-      </ul>
-
-      <h2>Ingredientes:</h2>
-      <ul>
-        <li>{{comida.ingrediente_receta}}</li>
-      </ul>
-
-      <ul>
-        <li>País receta: {{comida.pais_receta}}</li>
-      </ul>
-      <p>Categoría: {{comida.categoria}}</p>
-      <p>Creado por: {{comida.creado_por}}</p>
-    </ion-card-content>
-  </ion-card>
-
-</ion-content>
+  <ion-card-content *ngIf="recetasRandom.length > 0; else noRecetasEncontradas">
+    <ion-list>      
+      <ion-item *ngFor="let receta of recetasRandom" class="ion-item-with-border">
+        <ion-thumbnail slot="start">
+          <img alt="{{ receta.nombre }}" [src]="receta.url_imagen" class="recipe-image" />
+        </ion-thumbnail>
+        <a [routerLink]="['/detalle-receta', receta.id_receta]" class="recipe-link">
+          <div class="recipe-name-container">
+            <ion-label class="recipe-name">{{ receta.nombre }}</ion-label>
+          </div>
+        </a>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+  <ng-template #noRecetasEncontradas>
+    <p>No se encontraron recetas.</p>
+  </ng-template>

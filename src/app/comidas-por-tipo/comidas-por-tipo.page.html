@@ -1,45 +1,42 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>Recetas por tipo</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Recetas por Tipo</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Comidas por tipo</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
+<ion-content padding class="background-image ion-text-center ion-padding-top ion-padding-left ion-padding-right">
+  <ion-col>
   <ion-grid>
     <ion-row>
       <ion-col>
         <div class="seccion-user text-center">
           <img class="user-cheems" src="../../assets/img/user-cheems.png" alt="">
-        <h2 class="tx-azul ">Comidas <br> <span class="tx700">Por Tipo</span></h2>
-        <p class="tx-cafe tx500">Lista de comidas para probar y disfrutar.</p>
-        <ion-button class="redondeado" [routerLink]="['/seleccionar']">Volver</ion-button>
-
-        <!-- <ion-item>
-          <ion-label>Ingresa un término <ion-text color="danger">*</ion-text></ion-label>
-          <ion-input required></ion-input>
-        </ion-item> -->
+          <h2 class="tx-azul">Comidas <br> <span class="tx700">Por Tipo</span></h2>
+          <p class="tx-cafe tx500">Lista de comidas para probar y disfrutar.</p>
+          <ion-button class="redondeado" [routerLink]="['/seleccionar']">Volver</ion-button>
         </div>
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <ion-accordion-group *ngFor="let cat of categories">
-    <ion-accordion value="first">
-      <ion-item slot="header" color="light">
+    <ion-list *ngIf="categorias && categorias.length > 0" class="ion-padding">
+      <ion-item *ngFor="let categoria of categorias" [routerLink]="['/comidas-por-tipo-nombre', categoria.nombre]" class="ion-item-with-border">
         <ion-thumbnail slot="start">
-          <img alt="{{ cat.imagen }}" src="https://via.placeholder.com/100x100" />
+          <img *ngIf="categoria.url_imagen; else defaultImage" alt="{{ categoria.nombre }}" src="{{ categoria.url_imagen }}" class="recipe-image" />
+          <ng-template #defaultImage>
+            <img class="cheems-huaso" src="../../assets/img/cheems-waso.png" alt="Imagen por defecto">
+          </ng-template>
         </ion-thumbnail>
-        <ion-label>{{ cat.categoria }}</ion-label>
+        <div class="recipe-name-container">
+          <ion-label class="recipe-name">{{ categoria.nombre }}</ion-label>
+        </div>
       </ion-item>
-      <div class="ion-padding" slot="content">
-        <p>Descripción: <i>{{ cat.comentario }}</i></p>
-      </div>
-    </ion-accordion>   
-  </ion-accordion-group>
+    </ion-list>
+    <div *ngIf="categorias && categorias.length === 0" class="ion-padding">
+      <p>No hay categorías disponibles.</p>
+    </div>
+  </ion-col>
 </ion-content>

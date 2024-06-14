@@ -5,15 +5,13 @@ const recetasRoutes = require('./routes/recetas.routes');
 const paisesRoutes = require('./routes/paises.routes');
 const categoriasRoutes = require('./routes/categorias.routes');
 //SWAGGER
-// const swaggerConfig = require('./utils/swagger');
-const swaggerUi = require("swagger-ui-express");
-import swaggerDocument from './swagger/swagger.json';
+const swaggerConfig = require('./utils/swagger');
 const express = require('express')
 const morgan = require ('morgan')
 //INICIALIZO EXPRESS
 const app = express();
 // Configurar Swagger
-// swaggerConfig(app);
+swaggerConfig(app);
 const cors = require('cors')
 // settings
 app.set("port", 3000);
@@ -22,7 +20,6 @@ app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
 //RUTAS
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/usuario', usuarioRoutes);
 app.use('/auth', loginRoutes);
 app.use('/recetas', recetasRoutes);

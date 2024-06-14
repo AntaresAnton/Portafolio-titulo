@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MealService } from '../services/api.service';
+import { CategoriaService } from '../services/api.service';
 
 
 @Component({
@@ -10,13 +10,11 @@ import { MealService } from '../services/api.service';
 export class SeleccionarPage implements OnInit {
   categories: any;
 
-  constructor(private mealService: MealService) {}
+  constructor(private categoriaService: CategoriaService) {}
 
   ngOnInit() {
-    this.mealService.getCategories().subscribe((data) => {
-      console.log(data)
+    this.categoriaService.getCategorias().subscribe((data: any) => {
       this.categories = data.categories;
-      
     });
   }
 }

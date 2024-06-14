@@ -277,6 +277,7 @@ const {
 //CONTROLADORES
 const {
   obtenerRecetas,
+  obtenerRecetasRandom,
   agregarReceta,
   obtenerReceta,
   obtenerRecetaNombre,
@@ -296,6 +297,7 @@ const {
 const router = Router();
 //RUTAS DE RECETAS
 router.get('/', obtenerRecetas);
+router.get('/receta-aleatoria', obtenerRecetasRandom);
 router.post('/', TokenTrue, [validadorRecetas], agregarReceta);
 router.get('/:id', obtenerReceta);
 router.get('/nombre/:name', obtenerRecetaNombre);
