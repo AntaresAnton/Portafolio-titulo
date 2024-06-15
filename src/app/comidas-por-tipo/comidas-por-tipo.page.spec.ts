@@ -7,7 +7,7 @@ describe('ComidasPorCategoriaPage', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ComidasPorCategoriaPage]
+      declarations: [ComidasPorCategoriaPage],
     });
     fixture = TestBed.createComponent(ComidasPorCategoriaPage);
     component = fixture.componentInstance;

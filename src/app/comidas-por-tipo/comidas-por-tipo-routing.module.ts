@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ComidasPorCategoriaPage} from './comidas-por-tipo.page';
+import { ComidasPorCategoriaPage } from './comidas-por-tipo.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: ComidasPorCategoriaPage
-  }
+    component: ComidasPorCategoriaPage,
+  },
 ];
 
 @NgModule({

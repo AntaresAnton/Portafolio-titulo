@@ -1,26 +1,4 @@
-// import { Component, OnInit } from '@angular/core';
-// import { CategoriaService } from '../services/api.service';
-
-
-// @Component({
-//   selector: 'app-seleccionar',
-//   templateUrl: './seleccionar.page.html',
-//   styleUrls: ['./seleccionar.page.scss'],
-// })
-// export class SeleccionarPage implements OnInit {
-//   categories: any;
-
-//   constructor(private categoriaService: CategoriaService) {}
-
-//   ngOnInit() {
-//     this.categoriaService.getCategorias().subscribe((data: any) => {
-//       this.categories = data.categories;
-//     });
-//   }
-// }
-
-import { Component, ViewChild } from '@angular/core';
-import { IonContent } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
 import { CategoriaService } from '../services/api.service';
 
 @Component({
@@ -28,19 +6,22 @@ import { CategoriaService } from '../services/api.service';
   templateUrl: './seleccionar.page.html',
   styleUrls: ['./seleccionar.page.scss'],
 })
-export class SeleccionarPage {
-  @ViewChild(IonContent, { static: false }) content: IonContent;
+export class SeleccionarPage implements OnInit {
+  categories: any;
 
   constructor(private categoriaService: CategoriaService) {}
 
-  scrollToTop() {
-    this.content.scrollToTop(400); // 400ms de duración de la animación
+  subir() {
+    console.log('Subiendooo :D');
+    const content = document.querySelector('ion-content');
+    if (content) {
+      content.scrollToTop(500); // Desplaza hacia arriba en 500ms
+    }
   }
+
   ngOnInit() {
     this.categoriaService.getCategorias().subscribe((data: any) => {
       this.categories = data.categories;
     });
   }
 }
-
-

@@ -17,6 +17,14 @@ export class DetalleRecetaPage implements OnInit {
     private location: Location
   ) {}
 
+  subir() {
+    console.log('Subiendooo :D');
+    const content = document.querySelector('ion-content');
+    if (content) {
+      content.scrollToTop(500); // Desplaza hacia arriba en 500ms
+    }
+  }
+
   onClick = (event: Event) => {
     event.preventDefault();
     this.location.back();

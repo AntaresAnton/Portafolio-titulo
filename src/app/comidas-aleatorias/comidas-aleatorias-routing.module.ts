@@ -6,8 +6,8 @@ import { ComidasAleatoriasPage } from './comidas-aleatorias.page';
 const routes: Routes = [
   {
     path: '',
-    component: ComidasAleatoriasPage
-  }
+    component: ComidasAleatoriasPage,
+  },
 ];
 
 @NgModule({

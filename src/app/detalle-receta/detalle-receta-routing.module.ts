@@ -5,8 +5,8 @@ import { DetalleRecetaPage } from './detalle-receta.page';
 const routes: Routes = [
   {
     path: '',
-    component: DetalleRecetaPage
-  }
+    component: DetalleRecetaPage,
+  },
 ];
 
 @NgModule({

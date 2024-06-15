@@ -9,12 +9,7 @@ import { PostresPageRoutingModule } from './postres-routing.module';
 import { PostresPage } from './postres.page';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    PostresPageRoutingModule
-  ],
-  declarations: [PostresPage]
+  imports: [CommonModule, FormsModule, IonicModule, PostresPageRoutingModule],
+  declarations: [PostresPage],
 })
 export class PostresPageModule {}

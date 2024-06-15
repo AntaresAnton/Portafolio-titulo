@@ -13,8 +13,8 @@ import { ComidasAleatoriasPage } from './comidas-aleatorias.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    ComidasAleatoriasPageRoutingModule
+    ComidasAleatoriasPageRoutingModule,
   ],
-  declarations: [ComidasAleatoriasPage]
+  declarations: [ComidasAleatoriasPage],
 })
 export class ComidasAleatoriasPageModule {}

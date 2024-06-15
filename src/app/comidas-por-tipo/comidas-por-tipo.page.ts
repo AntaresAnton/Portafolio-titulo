@@ -17,7 +17,15 @@ interface Categoria {
 export class ComidasPorCategoriaPage implements OnInit {
   categorias: Categoria[] = [];
 
-  constructor(private categoriaService: CategoriaService) { }
+  constructor(private categoriaService: CategoriaService) {}
+  // metodo para hacer el scroll
+  subir() {
+    console.log('Subiendooo :D');
+    const content = document.querySelector('ion-content');
+    if (content) {
+      content.scrollToTop(500); // Desplaza hacia arriba en 500ms
+    }
+  }
 
   ngOnInit() {
     this.obtenerCategorias();
@@ -33,7 +41,7 @@ export class ComidasPorCategoriaPage implements OnInit {
       },
       error: (error: any) => {
         console.error('Error al obtener las categorías:', error);
-      }
+      },
     });
   }
 }

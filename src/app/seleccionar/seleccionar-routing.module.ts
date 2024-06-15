@@ -6,8 +6,8 @@ import { SeleccionarPage } from './seleccionar.page';
 const routes: Routes = [
   {
     path: '',
-    component: SeleccionarPage
-  }
+    component: SeleccionarPage,
+  },
 ];
 
 @NgModule({

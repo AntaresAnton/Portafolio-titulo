@@ -18,7 +18,16 @@ interface Pais {
 export class ComidasPorPaisPage implements OnInit {
   data: Pais[] = [];
 
-  constructor(private paisService: PaisService) { }
+  constructor(private paisService: PaisService) {}
+
+  // metodo para hacer scroll hacia arriba
+  subir() {
+    console.log('Subiendooo :D');
+    const content = document.querySelector('ion-content');
+    if (content) {
+      content.scrollToTop(500); // Desplaza hacia arriba en 500ms
+    }
+  }
 
   ngOnInit() {
     this.obtenerPaises();
@@ -35,7 +44,7 @@ export class ComidasPorPaisPage implements OnInit {
       },
       error: (error) => {
         console.error('Error al obtener los países:', error);
-      }
+      },
     });
   }
 }

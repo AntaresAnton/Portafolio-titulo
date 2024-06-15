@@ -15,10 +15,17 @@ interface Postre {
 export class PostresPage implements OnInit {
   postres: Postre[] = [];
 
-  constructor(private postreService: PostreService) { }
+  constructor(private postreService: PostreService) {}
 
   ngOnInit() {
     this.obtenerPostres();
+  }
+  subir() {
+    console.log('Subiendooo :D');
+    const content = document.querySelector('ion-content');
+    if (content) {
+      content.scrollToTop(500); // Desplaza hacia arriba en 500ms
+    }
   }
 
   obtenerPostres() {

@@ -5,8 +5,8 @@ import { ComidasPorPaisPage } from './comidas-por-pais.page';
 const routes: Routes = [
   {
     path: '',
-    component: ComidasPorPaisPage
-  }
+    component: ComidasPorPaisPage,
+  },
 ];
 
 @NgModule({

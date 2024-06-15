@@ -7,12 +7,15 @@
   --theme: var(--primary);
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
-  .hydrated{
-    display: block !important;
-  }
+
+.hydrated {
+  display: block !important;
+}
 
 body {
   display: grid;
@@ -84,6 +87,7 @@ img.cheems-huaso {
     opacity: 0;
     transform: translateY(20px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);

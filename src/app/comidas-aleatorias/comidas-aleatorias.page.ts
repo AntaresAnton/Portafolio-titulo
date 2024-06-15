@@ -15,7 +15,16 @@ interface RandomRecipe {
 export class ComidasAleatoriasPage implements OnInit {
   recetasRandom: RandomRecipe[] = [];
 
-  constructor(private mealService: AleatoriaMeal) { }
+  constructor(private mealService: AleatoriaMeal) {}
+
+  // metodo para hacer scroll hacia arriba
+  subir() {
+    console.log('Subiendooo :D');
+    const content = document.querySelector('ion-content');
+    if (content) {
+      content.scrollToTop(500); // Desplaza hacia arriba en 500ms
+    }
+  }
 
   ngOnInit() {
     this.obtenerRecetasAleatorias();

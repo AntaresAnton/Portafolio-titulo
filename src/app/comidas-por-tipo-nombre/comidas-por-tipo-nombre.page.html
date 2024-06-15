@@ -38,7 +38,7 @@
   </ion-grid>
 
   <ion-card-content *ngIf="categorias.length > 0; else noRecetasEncontradas">
-    <ion-list>      
+    <ion-list>
       <ion-item *ngFor="let categoria of categorias" class="ion-item-with-border">
         <ion-thumbnail slot="start">
           <img alt="{{ categoria.nombre }}" [src]="categoria.url_imagen" class="recipe-image" />
@@ -50,7 +50,12 @@
         </a>
       </ion-item>
     </ion-list>
+
   </ion-card-content>
+  <div class="ion-text-center ion-padding-top">
+    <ion-button class="redondeado" [routerLink]="['/seleccionar']">Volver</ion-button>
+    <ion-button class="redondeado" (click)="subir()">Subir</ion-button>
+  </div>
   <ng-template #noRecetasEncontradas>
     <p *ngIf="mostrarMensajeNoEncontrado">No se encontraron categorías para el tipo "{{ categoriaSeleccionada }}".</p>
   </ng-template>

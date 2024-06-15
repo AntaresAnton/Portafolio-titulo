@@ -66,7 +66,8 @@ export class LoginPage implements OnInit {
       await this.router.navigate(['/seleccionar']);
     } catch (error) {
       console.error('Error en el inicio de sesión:', error);
-      this.errorMessage = 'Error en el inicio de sesión. Verifica tus credenciales.';
+      this.errorMessage =
+        'Error en el inicio de sesión. Verifica tus credenciales.';
     }
   }
 }

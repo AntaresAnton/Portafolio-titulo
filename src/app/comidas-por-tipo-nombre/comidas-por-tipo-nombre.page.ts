@@ -25,16 +25,27 @@ export class ComidasPorTipoNombrePage implements OnInit {
   constructor(
     private categoriaNombreService: CategoriaNombreService,
     private activatedRoute: ActivatedRoute
+    
   ) {}
+  subir() {
+    console.log('Subiendooo :D');
+    const content = document.querySelector('ion-content');
+    if (content) {
+      content.scrollToTop(500); // Desplaza hacia arriba en 500ms
+    }
+  }
 
   ngOnInit() {
+    
     this.activatedRoute.paramMap.subscribe((params) => {
       const categoriaDeRuta = params.get('nombre');
       if (categoriaDeRuta) {
         this.categoriaSeleccionada = categoriaDeRuta;
         this.obtenerRecetasPorCategoria();
       }
+      
     });
+    
   }
 
   obtenerRecetasPorCategoria() {

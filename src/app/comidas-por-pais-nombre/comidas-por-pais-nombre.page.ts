@@ -16,6 +16,14 @@ export class ComidasPorPaisNombrePage implements OnInit {
     private route: ActivatedRoute,
     private paisNombreService: PaisNombreService
   ) {}
+  // metodo para hacer scroll
+  subir() {
+    console.log('Subiendooo :D');
+    const content = document.querySelector('ion-content');
+    if (content) {
+      content.scrollToTop(500); // Desplaza hacia arriba en 500ms
+    }
+  }
 
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {

@@ -6,8 +6,8 @@ import { ComidasPorTipoNombrePage } from './comidas-por-tipo-nombre.page';
 const routes: Routes = [
   {
     path: '',
-    component: ComidasPorTipoNombrePage
-  }
+    component: ComidasPorTipoNombrePage,
+  },
 ];
 
 @NgModule({
