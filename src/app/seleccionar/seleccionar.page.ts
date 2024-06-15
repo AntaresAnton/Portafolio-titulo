@@ -8,9 +8,6 @@ import { CategoriaService } from '../services/api.service';
 })
 export class SeleccionarPage implements OnInit {
   categories: any;
-
-  constructor(private categoriaService: CategoriaService) {}
-
   subir() {
     console.log('Subiendooo :D');
     const content = document.querySelector('ion-content');
@@ -18,10 +15,14 @@ export class SeleccionarPage implements OnInit {
       content.scrollToTop(500); // Desplaza hacia arriba en 500ms
     }
   }
+  constructor(private categoriaService: CategoriaService) {}
+
+ 
 
   ngOnInit() {
     this.categoriaService.getCategorias().subscribe((data: any) => {
       this.categories = data.categories;
     });
+    
   }
 }
