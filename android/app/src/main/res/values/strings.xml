@@ -2,6 +2,6 @@
 <resources>
     <string name="app_name">Recetas del Mundo</string>
     <string name="title_activity_main">Recetas del Mundo</string>
-    <string name="package_name">ionic.app.base</string>
-    <string name="custom_url_scheme">ionic.app.base</string>
+    <string name="package_name">recetas.del.mundo.base</string>
+    <string name="custom_url_scheme">recetas.del.mundo.base</string>
 </resources>

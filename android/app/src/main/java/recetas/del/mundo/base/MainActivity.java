@@ -1,4 +1,4 @@
-package ionic.app.base;
+package recetas.del.mundo.base;
 
 import com.getcapacitor.BridgeActivity;
 
