@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'recetas.del.mundo.base',
+  appId: 'ionic.app.base',
   appName: 'Recetas del Mundo',
   webDir: 'www',
   server: {

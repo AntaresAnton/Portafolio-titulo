@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace "recetas.del.mundo.base"
+    namespace "ionic.app.base"
     compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "recetas.del.mundo.base"
+        applicationId "ionic.app.base"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

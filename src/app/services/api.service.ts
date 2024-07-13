@@ -11,7 +11,52 @@ const headers = new HttpHeaders({
   'Content-Type': 'application/json',
   'Authorization': `Bearer ${token}`
 });
-// APIS LOCALES FUNCIONALES
+
+// API USUARIO
+@Injectable({
+  providedIn: 'root'
+})
+// APIS CRUD RECETA
+@Injectable({
+  providedIn: 'root'
+})
+export class RecetaService {
+  private apiUrl = 'https://apirecetas.iacst.space/recetas';
+
+  constructor(private http: HttpClient) { }
+
+  agregarReceta(receta: any): Observable<any> {
+    const options = {
+      headers: headers
+    };
+    return this.http.post(this.apiUrl, receta, options);
+  }
+
+  obtenerRecetas(): Observable<any> {
+    return this.http.get(this.apiUrl);
+  }
+
+  obtenerReceta(id: number): Observable<any> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get(url);
+  }
+
+  actualizarReceta(id: number, receta: any): Observable<any> {
+    const url = `${this.apiUrl}/${id}`;
+    const options = {
+      headers: headers
+    };
+    return this.http.put(url, receta, options);
+  } 
+
+  eliminarReceta(id: number): Observable<any> {
+    const url = `${this.apiUrl}/${id}`;
+    const options = {
+      headers: headers
+    };
+    return this.http.delete(url, options);
+  }
+}
 
 // módulo para obtener datos de categorías
 @Injectable({
@@ -159,12 +204,12 @@ export class PostreService {
     return this.http.get<{ ok: boolean; data: { id_receta: number; url_imagen: string; nombre: string }[] }>(this.apiUrl);
   }
 }
-////////////////// para desplegar usuarios destacados jaja
+////////////////// para desplegar usuarios
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-  private apiUrl = 'https://apirecetas.iacst.space/usuario/';
+  private apiUrl = 'https://apirecetas.iacst.space/usuario';
 
   constructor(private http: HttpClient) { }
 
@@ -173,5 +218,36 @@ export class UsuarioService {
       headers: headers
     };
     return this.http.get<any[]>(this.apiUrl, options);
+  }
+
+  getUsuarioId(id: number): Observable<any> {
+    const url = `${this.apiUrl}/${encodeURIComponent(id)}`;
+    const options = {
+      headers: headers
+    };
+    return this.http.get<any[]>(url, options);
+  }
+
+  actualizarUsuario(id: number, usuarioActualizado: any): Observable<any> {
+    const url = `${this.apiUrl}/${id}`;
+    const options = {
+      headers: headers
+    };
+    return this.http.put(url, usuarioActualizado, options);
+  }
+}
+
+/////////////////// USUARIO REGISTRADO 
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UsuarioRegistroService {
+  private apiUrl = 'https://apirecetas.iacst.space/usuario/';
+
+  constructor(private http: HttpClient) { }
+
+  crearUsuario(nuevoUsuario: any): Observable<any> {
+    return this.http.post(this.apiUrl, nuevoUsuario);
   }
 }
